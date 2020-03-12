@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 using namespace std;
 
 const int width = 20;
@@ -19,10 +20,27 @@ void Setup(){
     fruitY = rand() % height;
     score = 0;
 }
-void Display();
+void Display(){
+    system("cls");
+    for (int i = 0; i < width + 2; i++) cout << '#';
+    cout << endl;
+    for (int i = 0; i < height; i++){
+        for (int j = 0; j < width; j++){
+            if (j == 0) cout << '#';
+            if (i == y && j == x) cout <<'O';
+            else if (i == fruitY && j == fruitX) cout << '@';
+            else cout << ' ';
+            if (j == width - 1) cout << '#';
+        }
+        cout << endl;
+    }
+    for (int i = 0; i < width + 2; i++) cout << '#';
+}
 
 int main(){
     Setup();
-    Display();
+    while (!Gameover){
+        Display();
+    }
     return 0;
 }
